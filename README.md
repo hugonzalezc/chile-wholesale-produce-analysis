@@ -2,7 +2,7 @@
 
 Análisis exploratorio de los registros de comercialización de frutas y hortalizas en mercados mayoristas de Chile, con datos de ODEPA. Se limpian y auditan los datos (incluyendo unidades de venta no comparables entre sí) y se describen patrones de precio, volumen, origen y mercado con Python, SQL y un dashboard en Power BI. Se describen asociaciones y diferencias observadas, no causalidad.
 
-> 🚧 **Proyecto en construcción.** Última actualización: [fecha]
+> 🚧 **Proyecto en construcción.** Última actualización: [03-10-2026]
 
 ## Estado
 
