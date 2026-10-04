@@ -79,3 +79,36 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 - **Alternativas:** deflactar todo el análisis.
 - **Justificación:** mantiene simple el análisis general y deja la inflación como pregunta aparte.
 - **Impacto:** fuera de P4, los cambios de precio incluyen inflación.
+
+### D-09 · Tipos de datos
+- **Fecha:** 2026-10-04
+- **Contexto:** los CSV se leyeron como texto para auditarlos (1.247 MB en memoria).
+- **Decisión:** `Fecha` a datetime, las cuatro columnas numéricas a números (coma decimal) y las textuales a categorías, incluido `ID region`.
+- **Justificación:** baja la memoria a 69 MB y acelera las agrupaciones. `ID region` es un identificador, no una cantidad.
+- **Impacto:** al agrupar categorías se usa `observed=True`.
+
+### D-10 · Filas sin transacción (volumen 0 y precios 0)
+- **Fecha:** 2026-10-04
+- **Contexto:** 201 filas (0,02%) tienen volumen y los tres precios en 0, siempre juntos.
+- **Decisión (provisoria):** tratarlas como "sin transacción" y excluirlas de los análisis de precio y volumen.
+- **Justificación:** un precio de 0 pesos no es creíble, y son muy pocas.
+- **Impacto:** se revisa su distribución en el notebook 01 antes de confirmar.
+
+### D-11 · Valores extremos se conservan
+- **Fecha:** 2026-10-04
+- **Contexto:** los precios llegan a 999.990 (kiwi en bins de 450 kg) y los volúmenes a 1.100.000 (choclo por unidad).
+- **Decisión:** no eliminar valores por su magnitud. Se comparan siempre dentro del mismo producto y unidad.
+- **Justificación:** las series son coherentes: la escala depende de la unidad, no de un error. El choclo de 1,1 millones se vigila como posible atípico.
+- **Impacto:** nunca se resumen precios ni volúmenes entre unidades distintas.
+
+### D-12 · Sin duplicados; clave única
+- **Fecha:** 2026-10-04
+- **Contexto:** no hay duplicados exactos ni filas con la misma clave y valores distintos.
+- **Decisión:** no deduplicar. La clave (fecha, mercado, producto, variedad, calidad, unidad, origen) identifica cada fila.
+- **Impacto:** se usa como clave única en SQLite.
+
+### D-13 · Variabilidad medida con el precio promedio
+- **Fecha:** 2026-10-04
+- **Contexto:** mínimo y máximo coinciden en el 55,4% de las filas, y la proporción sube de 2021 a 2026.
+- **Decisión:** no usar el rango diario como medida de variabilidad. P1 mide la variación del precio promedio entre periodos.
+- **Impacto:** el rango y la variación relativa quedan solo como indicador complementario, con esta salvedad.
