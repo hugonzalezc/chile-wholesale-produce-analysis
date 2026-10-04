@@ -93,6 +93,7 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 - **Decisión (provisoria):** tratarlas como "sin transacción" y excluirlas de los análisis de precio y volumen.
 - **Justificación:** un precio de 0 pesos no es creíble, y son muy pocas.
 - **Impacto:** se revisa su distribución en el notebook 01 antes de confirmar.
+**(Actualización)** Las 201 filas con volumen y precios en 0 son todas de 2025, 114 en Vega Modelo de Temuco, y las cinco principales son fruta. Se confirma excluirlas de los análisis de precio y volumen.
 
 ### D-11 · Valores extremos se conservan
 - **Fecha:** 2026-10-04
@@ -112,3 +113,45 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 - **Contexto:** mínimo y máximo coinciden en el 55,4% de las filas, y la proporción sube de 2021 a 2026.
 - **Decisión:** no usar el rango diario como medida de variabilidad. P1 mide la variación del precio promedio entre periodos.
 - **Impacto:** el rango y la variación relativa quedan solo como indicador complementario, con esta salvedad.
+
+### D-14 · Interpretación de `Volumen`
+- **Fecha:** 2026-10-04
+- **Contexto:** 36.416 filas (2,8%) tienen la aclaración "(volumen en unidades)" en la unidad, p. ej. `$/kilo (volumen en unidades)`.
+- **Decisión:** el volumen se interpreta como expresado en la unidad de venta salvo que la etiqueta diga otra cosa. Las filas con aclaración no se suman con las demás.
+- **Justificación:** la aclaración explícita solo aparece en algunas etiquetas. Es una inferencia, no confirmada por ODEPA.
+- **Impacto:** los volúmenes solo se suman dentro de una misma base de medida.
+**(Actualización)** Se probó la hipótesis con cuatro productos (manzana, lechuga, palta, tomate). Solo la manzana en bins la respalda con claridad (volumen mediano 16 para un envase de 400 kg). En el resto la prueba no distingue entre volumen en la unidad de venta y volumen en una medida común. En etiquetas "$/kilo (en caja de X kilos)" se desconoce si el volumen son cajas o kilos. Sigue pendiente la respuesta de ODEPA.
+**(Cierre)** La aclaración "(volumen en unidades)" aparece solo en 5 productos: zapallo, cebolla, sandía, rabanito y ajo. En el resto se asume que el volumen va en la unidad de venta. Pendiente de confirmar con ODEPA.
+
+### D-15 · Origen nacional frente a extranjero
+- **Fecha:** 2026-10-04
+- **Decisión:** se clasifica como extranjero un origen de la lista de 13 países (incluida "Importada(o)"); todo lo demás es nacional.
+- **Justificación:** la lista es pequeña y explícita. El resto de `Origen` mezcla regiones, provincias y comunas, y no se unifica.
+- **Impacto:** se usa en P3. La parte de P2 sobre origen fuera de la RM queda diferida.
+
+### D-16 · Calidad ordinal (provisoria)
+- **Fecha:** 2026-10-04
+- **Decisión:** para P5, agrupar en Primera/1a, Segunda/2a y Tercera/3a, y excluir calibres y estados de madurez.
+- **Impacto:** se confirma tras ver cuántas filas y productos quedan con al menos dos calidades en la misma unidad.
+
+### D-17 · Precio por kilo como medida comparable (provisoria)
+- **Fecha:** 2026-10-04
+- **Contexto:** el mismo producto aparece con muchos envases (nectarín tiene 33
+  unidades distintas). Comparar solo "mismo producto y misma etiqueta" fragmenta el
+  análisis, y la etiqueta dominante cubre un 59,5% de las filas.
+- **Decisión:** calcular precio por kilo cuando la etiqueta lo permita. Verificado con
+  palta: kilo directo ≈ 3.000 y bandeja de 10 kg ≈ 2.800.
+- **Alternativas:** comparar solo dentro de cada etiqueta.
+- **Impacto:** quedan fuera de la conversión las unidades sin kilos (lechuga por unidad,
+  docenas de atados) y las que traen rangos. Las diferencias por envase, variedad y
+  calidad se controlan aparte.
+- **Estado:** se confirma después de revisar las 191 etiquetas (celda 18).
+**(Actualización)** Las 191 etiquetas se clasifican con `src/unidades.py` en: kilo, kilos_envase, unidades, kilo_vol_unidades, unidades_vol_unidades, rango y otro. `precio_kg` solo se calcula para kilo, kilos_envase y kilo_vol_unidades. Las demás se comparan dentro de su propia etiqueta.
+
+### D-18 · Ponderación al agregar precios (provisoria)
+- **Contexto:** la ponderación por volumen mezcla pesos de distinta base cuando se
+  agrupan etiquetas.
+- **Decisión:** dentro de una misma etiqueta, ponderar por volumen. Entre etiquetas, usar
+  volumen × kilos por unidad, y comparar siempre contra la mediana sin ponderar.
+- **Justificación:** el ponderado entre etiquetas depende de la hipótesis sobre `Volumen`,
+  no confirmada. Si ambos métodos coinciden, la conclusión es más robusta.
