@@ -82,3 +82,14 @@ Observado en las primeras filas; por confirmar al cargar los archivos:
 - En varias filas, precio mínimo, máximo y promedio coinciden. Falta medir cuántas.
 - Un mismo producto (acelga) aparece con unidades de venta distintas según el mercado, y sus precios no son comparables entre sí.
 - Estas observaciones se confirman o se descartan en la auditoría (`notebooks/01_carga_y_auditoria.ipynb`).
+
+## Hallazgos de la auditoría (notebook 01)
+
+- Los 7 encabezados son idénticos. Cada archivo contiene solo fechas de su año.
+- No hay duplicados: la clave (fecha, mercado, producto, variedad, calidad, unidad, origen) es única.
+- Cobertura: 9 regiones, 12 mercados (presentes los 7 años), 82 productos y 191 etiquetas de unidad.
+- 201 filas (0,02%) con volumen y precios en 0, todas de 2025: se excluyen.
+- Mínimo = máximo en el 55,4% de las filas (de 49,5% en 2021 a 61,8% en 2026).
+- `Volumen`: 5 productos traen la aclaración "(volumen en unidades)" en la unidad (zapallo, cebolla, sandía, rabanito, ajo). En el resto se asume que va en la unidad de venta (inferencia, sin confirmar con ODEPA).
+- `Origen` mezcla regiones, provincias, comunas y países. 13 valores son extranjeros.
+- `Subsector` tiene dos valores (Frutas, Hortalizas y tubérculos), coherentes con el diccionario. Los precios traen 4 decimales con coma, aunque el diccionario los declara enteros.

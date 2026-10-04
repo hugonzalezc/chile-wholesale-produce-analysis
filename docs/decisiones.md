@@ -128,6 +128,7 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 - **Decisión:** se clasifica como extranjero un origen de la lista de 13 países (incluida "Importada(o)"); todo lo demás es nacional.
 - **Justificación:** la lista es pequeña y explícita. El resto de `Origen` mezcla regiones, provincias y comunas, y no se unifica.
 - **Impacto:** se usa en P3. La parte de P2 sobre origen fuera de la RM queda diferida.
+**(Actualización)** Seis productos son extranjeros en ≥95% de sus filas (camote, coco, jengibre, mango, piña, plátano) y se excluyen de P3 por no ofrecer alternativa nacional. P3 se enfoca en palta, poroto verde, sandía, zapallo, cebolla, limón y ajo. Se descartan por pocas filas o por ruido: maracuyá, pera asiática, poroto granado y melón. P3 se calculará por volumen (dentro de cada producto y etiqueta) y se contrastará con el cálculo por filas.
 
 ### D-16 · Calidad ordinal (provisoria)
 - **Fecha:** 2026-10-04
@@ -147,6 +148,7 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
   calidad se controlan aparte.
 - **Estado:** se confirma después de revisar las 191 etiquetas (celda 18).
 **(Actualización)** Las 191 etiquetas se clasifican con `src/unidades.py` en: kilo, kilos_envase, unidades, kilo_vol_unidades, unidades_vol_unidades, rango y otro. `precio_kg` solo se calcula para kilo, kilos_envase y kilo_vol_unidades. Las demás se comparan dentro de su propia etiqueta.
+**(Cierre)** `precio_kg` cubre el 69,9% de las filas. Quedan sin precio por kilo las unidades (28,4%), los rangos (0,9%) y dos etiquetas en gramos. La razón entre el mayor y el menor precio por kilo de un producto va de 2,4 a 3,7 en los seis productos más dispersos: no hay falla grosera, pero tampoco validación. La validación controlada (mismo mercado, fecha, variedad y calidad entre dos etiquetas) se hace en el análisis de precios.
 
 ### D-18 · Ponderación al agregar precios (provisoria)
 - **Contexto:** la ponderación por volumen mezcla pesos de distinta base cuando se
@@ -155,3 +157,13 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
   volumen × kilos por unidad, y comparar siempre contra la mediana sin ponderar.
 - **Justificación:** el ponderado entre etiquetas depende de la hipótesis sobre `Volumen`,
   no confirmada. Si ambos métodos coinciden, la conclusión es más robusta.
+
+### D-19 · Formato y unidad de análisis
+- **Fecha:** 2026-10-04
+- **Decisión:** el dataset limpio se guarda en Parquet, con nombres de columna en
+  minúsculas y sin espacios. La unidad de análisis de precios es `precio_kg` cuando
+  existe. Si no, el precio se compara dentro de una misma etiqueta de unidad.
+- **Justificación:** Parquet conserva los tipos y se lee mucho más rápido que un CSV de
+  1,3 millones de filas. Los cambios de precio en el tiempo dentro de una misma etiqueta
+  no requieren conversión alguna.
+- **Impacto:** reemplaza el `precios_limpio.csv` previsto en la estructura inicial.
