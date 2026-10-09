@@ -167,3 +167,22 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
   1,3 millones de filas. Los cambios de precio en el tiempo dentro de una misma etiqueta
   no requieren conversión alguna.
 - **Impacto:** reemplaza el `precios_limpio.csv` previsto en la estructura inicial.
+
+### D-20 · Método de P2
+- **Fecha:** 2026-10-09
+- **Decisión:** la participación de la RM se calcula dentro de cada (producto, unidad)
+  y se resume con la mediana entre grupos. Panel de grupos que se usan en mercados de la
+  RM y de fuera, presentes los 7 años y con al menos 500 filas. Solo enero a septiembre.
+- **Justificación:** el volumen solo se suma dentro de una misma etiqueta (D-14). Sin la
+  restricción, las etiquetas exclusivas de un mercado darían 0% o 100% por cómo se
+  etiqueta, no por centralización. El panel evita que cambie la composición entre años.
+- **Impacto:** el resultado vale para los mercados monitoreados por ODEPA (9 regiones).
+  Se contrasta con filas y con kilos (celda 5).
+
+### D-21 · Método de P3
+- **Fecha:** 2026-10-09
+- **Decisión:** la participación extranjera se mide por volumen, dentro de la etiqueta
+  de unidad principal de cada producto con ambos orígenes (≥300 filas), para siete
+  productos. Se contrasta con la proporción de filas.
+- **Impacto:** no permite generalizar a productos casi siempre importados ni a los que
+  casi no se importan.
