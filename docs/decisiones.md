@@ -191,3 +191,15 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Contexto:** `kilos_envase` excluye las etiquetas `$/kilo (en caja de N kilos)`. En la palta solo quedó `bandeja 10 kilos` (cobertura 0,29), la etiqueta importada, y el resultado (89–99%) fue un sesgo de selección.
 - **Decisión:** la medida en kilos solo se reporta para ajo, cebolla, limón y poroto verde. Palta, zapallo y sandía quedan solo con la medida por filas.
 - **Impacto:** la medida principal de P3 es filas con todas las etiquetas; la de kilos es un contraste parcial.
+
+### D-25 · Cierre de P2
+- **Fecha:** 2026-10-09
+- **Contexto:** cuatro medidas de la participación de la RM dan señales distintas (promedio por grupo −5 a −8 pp; promedio por producto en kilos −7 pp; kilos totales +2 pp).
+- **Decisión:** reportar las medidas con su rango (44% a 60%) y concluir "sin tendencia concluyente". La ponderación por volumen crudo entre etiquetas se descarta porque suma unidades distintas.
+- **Justificación:** el resultado depende de si se pondera por producto o por kilos, y del conjunto de grupos elegido. Ninguna medida es "la verdadera".
+- **Impacto:** el producto típico se descentraliza algo, pero el total de kilos no.
+
+### D-26 · Cierre de P3
+- **Fecha:** 2026-10-09
+- **Decisión:** la medida de P3 es la proporción de filas extranjeras por producto y año. Los seis productos casi siempre importados explican el nivel global, no la tendencia.
+- **Impacto:** la conclusión es por filas, no por volumen. La palta no permite separar un cambio real de un cambio de reporte.
