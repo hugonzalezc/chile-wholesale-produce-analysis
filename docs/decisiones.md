@@ -137,52 +137,44 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 
 ### D-17 · Precio por kilo como medida comparable (provisoria)
 - **Fecha:** 2026-10-04
-- **Contexto:** el mismo producto aparece con muchos envases (nectarín tiene 33
-  unidades distintas). Comparar solo "mismo producto y misma etiqueta" fragmenta el
+- **Contexto:** el mismo producto aparece con muchos envases (nectarín tiene 33 unidades distintas). Comparar solo "mismo producto y misma etiqueta" fragmenta el
   análisis, y la etiqueta dominante cubre un 59,5% de las filas.
-- **Decisión:** calcular precio por kilo cuando la etiqueta lo permita. Verificado con
-  palta: kilo directo ≈ 3.000 y bandeja de 10 kg ≈ 2.800.
+- **Decisión:** calcular precio por kilo cuando la etiqueta lo permita. Verificado con palta: kilo directo ≈ 3.000 y bandeja de 10 kg ≈ 2.800.
 - **Alternativas:** comparar solo dentro de cada etiqueta.
-- **Impacto:** quedan fuera de la conversión las unidades sin kilos (lechuga por unidad,
-  docenas de atados) y las que traen rangos. Las diferencias por envase, variedad y
-  calidad se controlan aparte.
+- **Impacto:** quedan fuera de la conversión las unidades sin kilos (lechuga por unidad, docenas de atados) y las que traen rangos. Las diferencias por envase, variedad y calidad se controlan aparte.
 - **Estado:** se confirma después de revisar las 191 etiquetas (celda 18).
 **(Actualización)** Las 191 etiquetas se clasifican con `src/unidades.py` en: kilo, kilos_envase, unidades, kilo_vol_unidades, unidades_vol_unidades, rango y otro. `precio_kg` solo se calcula para kilo, kilos_envase y kilo_vol_unidades. Las demás se comparan dentro de su propia etiqueta.
 **(Cierre)** `precio_kg` cubre el 69,9% de las filas. Quedan sin precio por kilo las unidades (28,4%), los rangos (0,9%) y dos etiquetas en gramos. La razón entre el mayor y el menor precio por kilo de un producto va de 2,4 a 3,7 en los seis productos más dispersos: no hay falla grosera, pero tampoco validación. La validación controlada (mismo mercado, fecha, variedad y calidad entre dos etiquetas) se hace en el análisis de precios.
 
 ### D-18 · Ponderación al agregar precios (provisoria)
-- **Contexto:** la ponderación por volumen mezcla pesos de distinta base cuando se
-  agrupan etiquetas.
-- **Decisión:** dentro de una misma etiqueta, ponderar por volumen. Entre etiquetas, usar
-  volumen × kilos por unidad, y comparar siempre contra la mediana sin ponderar.
-- **Justificación:** el ponderado entre etiquetas depende de la hipótesis sobre `Volumen`,
-  no confirmada. Si ambos métodos coinciden, la conclusión es más robusta.
+- **Contexto:** la ponderación por volumen mezcla pesos de distinta base cuando se agrupan etiquetas.
+- **Decisión:** dentro de una misma etiqueta, ponderar por volumen. Entre etiquetas, usar volumen × kilos por unidad, y comparar siempre contra la mediana sin ponderar.
+- **Justificación:** el ponderado entre etiquetas depende de la hipótesis sobre `Volumen`, no confirmada. Si ambos métodos coinciden, la conclusión es más robusta.
 
 ### D-19 · Formato y unidad de análisis
 - **Fecha:** 2026-10-04
-- **Decisión:** el dataset limpio se guarda en Parquet, con nombres de columna en
-  minúsculas y sin espacios. La unidad de análisis de precios es `precio_kg` cuando
+- **Decisión:** el dataset limpio se guarda en Parquet, con nombres de columna en minúsculas y sin espacios. La unidad de análisis de precios es `precio_kg` cuando
   existe. Si no, el precio se compara dentro de una misma etiqueta de unidad.
-- **Justificación:** Parquet conserva los tipos y se lee mucho más rápido que un CSV de
-  1,3 millones de filas. Los cambios de precio en el tiempo dentro de una misma etiqueta
-  no requieren conversión alguna.
+- **Justificación:** Parquet conserva los tipos y se lee mucho más rápido que un CSV de 1,3 millones de filas. Los cambios de precio en el tiempo dentro de una misma etiqueta no requieren conversión alguna.
 - **Impacto:** reemplaza el `precios_limpio.csv` previsto en la estructura inicial.
 
 ### D-20 · Método de P2
 - **Fecha:** 2026-10-09
-- **Decisión:** la participación de la RM se calcula dentro de cada (producto, unidad)
-  y se resume con la mediana entre grupos. Panel de grupos que se usan en mercados de la
-  RM y de fuera, presentes los 7 años y con al menos 500 filas. Solo enero a septiembre.
-- **Justificación:** el volumen solo se suma dentro de una misma etiqueta (D-14). Sin la
-  restricción, las etiquetas exclusivas de un mercado darían 0% o 100% por cómo se
-  etiqueta, no por centralización. El panel evita que cambie la composición entre años.
-- **Impacto:** el resultado vale para los mercados monitoreados por ODEPA (9 regiones).
-  Se contrasta con filas y con kilos (celda 5).
+- **Decisión:** la participación de la RM se calcula dentro de cada (producto, unidad) y se resume con la mediana entre grupos. Panel de grupos que se usan en mercados de la RM y de fuera, presentes los 7 años y con al menos 500 filas. Solo enero a septiembre.
+- **Justificación:** el volumen solo se suma dentro de una misma etiqueta (D-14). Sin la restricción, las etiquetas exclusivas de un mercado darían 0% o 100% por cómo se etiqueta, no por centralización. El panel evita que cambie la composición entre años.
+- **Impacto:** el resultado vale para los mercados monitoreados por ODEPA (9 regiones). Se contrasta con filas y con kilos (celda 5).
 
 ### D-21 · Método de P3
 - **Fecha:** 2026-10-09
-- **Decisión:** la participación extranjera se mide por volumen, dentro de la etiqueta
-  de unidad principal de cada producto con ambos orígenes (≥300 filas), para siete
-  productos. Se contrasta con la proporción de filas.
-- **Impacto:** no permite generalizar a productos casi siempre importados ni a los que
-  casi no se importan.
+- **Decisión:** la participación extranjera se mide por volumen, dentro de la etiqueta de unidad principal de cada producto con ambos orígenes (≥300 filas), para siete productos. Se contrasta con la proporción de filas.
+- **Impacto:** no permite generalizar a productos casi siempre importados ni a los que casi no se importan.
+
+### D-21 (reemplazada)
+El método original (etiqueta principal por producto) se descartó: la etiqueta de unidad está ligada al origen (el limón importado se vende en `$/caja 24 kilos` y el nacional en otros envases), y en la palta dio 0% de importado cuando el conteo por filas daba 21–36%.
+Nuevo método para P3: proporción de filas extranjeras por producto y año, contando todas las etiquetas. Contraste: proporción en kilos con las etiquetas `kilos_envase`, reportando la cobertura. Zapallo y sandía, solo por filas.
+
+### D-22 · Cobertura cambiante entre años
+- **Fecha:** 2026-10-09
+- **Contexto:** hay grupos cuya participación en la RM cambia entre ~98% y ~2%, y el ajo con origen RM desaparece desde 2021.
+- **Decisión:** investigar los mayores cambios de P2 (celda 13) antes de interpretarlos. Para ajo se compara desde 2021.
+- **Impacto:** el resultado de P2 se reporta con la salvedad de que parte de la variabilidad es de cobertura y reporte.
