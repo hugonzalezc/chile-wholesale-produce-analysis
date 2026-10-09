@@ -178,3 +178,16 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Contexto:** hay grupos cuya participación en la RM cambia entre ~98% y ~2%, y el ajo con origen RM desaparece desde 2021.
 - **Decisión:** investigar los mayores cambios de P2 (celda 13) antes de interpretarlos. Para ajo se compara desde 2021.
 - **Impacto:** el resultado de P2 se reporta con la salvedad de que parte de la variabilidad es de cobertura y reporte.
+
+### D-23 · Método de P2 revisado
+- **Fecha:** 2026-10-09
+- **Contexto:** los mayores cambios de participación de la RM por (producto, unidad) son etiquetas que aparecen o desaparecen: manzana `bandeja 18 kilos granel` (0% hasta 2022, luego 87–98% en Vega Central), lechuga `caja 24 unidades` (Lo Valledor pasa de ~170 filas por año a ~0 desde 2023), ají `caja 12 kilos` (cinco mercados hasta 2022, después casi solo Vega Central). El criterio de panel "presente los 7 años" aceptaba grupos con una o dos filas por año.
+- **Decisión:** medida principal por producto en kilos (`kilos_envase`, cobertura ≥ 80% en kilos), que no depende de qué etiqueta use cada mercado. Contraste: grupos con presencia sostenida (≥20 filas por año, ≥5 en la RM y ≥5 fuera de ella) y proporción de filas.
+- **Justificación:** sumar kilos entre etiquetas del mismo producto evita la rotación de etiquetas, a cambio de depender de la hipótesis de `Volumen` (D-14).
+- **Impacto:** dos medidas con señales distintas (promedio por grupos −5 pp; 12 productos grandes en kilos +1 pp). Se reporta como "sin tendencia concluyente", con ambas cifras.
+
+### D-24 · Medida en kilos de P3 limitada
+- **Fecha:** 2026-10-09
+- **Contexto:** `kilos_envase` excluye las etiquetas `$/kilo (en caja de N kilos)`. En la palta solo quedó `bandeja 10 kilos` (cobertura 0,29), la etiqueta importada, y el resultado (89–99%) fue un sesgo de selección.
+- **Decisión:** la medida en kilos solo se reporta para ajo, cebolla, limón y poroto verde. Palta, zapallo y sandía quedan solo con la medida por filas.
+- **Impacto:** la medida principal de P3 es filas con todas las etiquetas; la de kilos es un contraste parcial.
