@@ -33,10 +33,10 @@ Las descripciones de la columna "Significado" provienen del diccionario de ODEPA
 | --- | --- | --- | --- | --- |
 | Fecha | Fecha del precio comercializado (según la fuente) | datetime | ¿Es fecha de transacción o de reporte? | `to_datetime`, rango de fechas por archivo |
 | ID region | Código de la región de Chile (según la fuente). Es un identificador, no una cantidad | texto/entero (entre comillas) | Sin pendientes | Revisar valores únicos |
-| Region | Nombre de la región de Chile (según la fuente) | texto (categórica) | ¿Coincide cada ID region con un único nombre de región? | Cruce `ID region` × `Region` |
-| Mercado | Mercado mayorista donde se comercializa el producto (según la fuente) | texto (categórica) | ¿Cambia la lista de mercados con los años? | `value_counts()` por año |
-| Subsector | Subsector del producto. La fuente indica "Frutas u Hortalizas" | texto (categórica) | Los datos muestran valores como "Hortalizas y tubérculos": ¿qué valores toma realmente y coinciden con los documentados? | `value_counts()` |
-| Producto | Nombre del producto (según la fuente) | texto (categórica) | ¿Hay variantes de escritura del mismo producto entre años? | `value_counts()`, comparar listas por año |
+| Region | Nombre de la región de Chile (según la fuente) | texto (categórica) | Sin pendientes | Cruce `ID region` × `Region` |
+| Mercado | Mercado mayorista donde se comercializa el producto (según la fuente) | texto (categórica) | Sin pendientes | `value_counts()` por año |
+| Subsector | Subsector del producto. La fuente indica "Frutas u Hortalizas" | texto (categórica) | Sin pendientes | `value_counts()` |
+| Producto | Nombre del producto (según la fuente) | texto (categórica) | Sin pendientes | `value_counts()`, comparar listas por año |
 | Variedad / Tipo | Variedad o tipo del producto (según la fuente) | texto (categórica) | ¿Qué proporción de filas dice "Sin especificar"? | `value_counts(normalize=True)` |
 | Calidad | Calidad del producto (según la fuente) | texto (categórica) | Categorías existentes y si tienen el mismo significado para todos los productos | `value_counts()` por producto |
 | Unidad de comercializacion | Unidad de comercialización del producto (según la fuente) | texto (categórica) | ¿Un mismo producto aparece con varias unidades? ¿Se pueden convertir entre sí? | `value_counts()` por producto |
@@ -44,7 +44,7 @@ Las descripciones de la columna "Significado" provienen del diccionario de ODEPA
 | Volumen | Volumen comercializado del producto (según la fuente) | numérico | Unidad de medida, que la fuente no especifica | Distribución por producto y unidad; comparación entre unidades |
 | Precio minimo | Precio mínimo observado del producto en CLP (según la fuente) | numérico | ¿El precio es por la unidad de comercialización indicada? | Comparar entre mercados para el mismo producto y unidad |
 | Precio maximo | Precio máximo observado del producto en CLP (según la fuente) | numérico | ¿El precio es por la unidad de comercialización indicada? | Idem |
-| Precio promedio | Promedio ponderado por el volumen transado, en CLP (según la fuente) | numérico | ¿Se cumple mínimo ≤ promedio ≤ máximo en todas las filas? | Comparar las tres columnas fila a fila |
+| Precio promedio | Promedio ponderado por el volumen transado, en CLP (según la fuente) | numérico | Sin pendientes | Comparar las tres columnas fila a fila |
 
 ## Documentación disponible
 
