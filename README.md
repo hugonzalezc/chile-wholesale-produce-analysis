@@ -2,13 +2,13 @@
 
 Análisis exploratorio de los registros de comercialización de frutas y hortalizas en mercados mayoristas de Chile, con datos de ODEPA. Se limpian y auditan los datos (incluyendo unidades de venta no comparables entre sí) y se describen patrones de precio, volumen, origen y mercado con Python, SQL y un dashboard en Power BI. Se describen asociaciones y diferencias observadas, no causalidad.
 
-> 🚧 **Proyecto en construcción.** Última actualización: [03-10-2026]
+> 🚧 **Proyecto en construcción.** Última actualización: [09-10-2026]
 
 ## Estado
 
 - [x] Estructura del repositorio y documentación de los datos
-- [ ] Carga y auditoría de datos
-- [ ] Limpieza
+- [x] Carga y auditoría de datos
+- [x] Limpieza
 - [ ] Análisis de volúmenes, precios y temporal
 - [ ] Base de datos y consultas SQL
 - [ ] Dashboard
@@ -85,3 +85,5 @@ Python, Pandas, Matplotlib, Seaborn, SQLite, Power BI, Jupyter, Git.
 ## Fuente y atribución
 
 Datos: ODEPA, [Portal de Datos Abiertos](https://datos.odepa.gob.cl/), licencia CC BY.
+
+_Proyecto desarrollado con asistencia de Claude (Anthropic) para la escritura de código y la redacción. Las decisiones de diseño, la verificación de resultados y las conclusiones fueron revisadas por mí._

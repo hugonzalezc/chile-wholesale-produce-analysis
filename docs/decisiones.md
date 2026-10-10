@@ -93,6 +93,7 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 - **Decisión (provisoria):** tratarlas como "sin transacción" y excluirlas de los análisis de precio y volumen.
 - **Justificación:** un precio de 0 pesos no es creíble, y son muy pocas.
 - **Impacto:** se revisa su distribución en el notebook 01 antes de confirmar.
+
 **(Actualización)** Las 201 filas con volumen y precios en 0 son todas de 2025, 114 en Vega Modelo de Temuco, y las cinco principales son fruta. Se confirma excluirlas de los análisis de precio y volumen.
 
 ### D-11 · Valores extremos se conservan
@@ -120,7 +121,9 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 - **Decisión:** el volumen se interpreta como expresado en la unidad de venta salvo que la etiqueta diga otra cosa. Las filas con aclaración no se suman con las demás.
 - **Justificación:** la aclaración explícita solo aparece en algunas etiquetas. Es una inferencia, no confirmada por ODEPA.
 - **Impacto:** los volúmenes solo se suman dentro de una misma base de medida.
+
 **(Actualización)** Se probó la hipótesis con cuatro productos (manzana, lechuga, palta, tomate). Solo la manzana en bins la respalda con claridad (volumen mediano 16 para un envase de 400 kg). En el resto la prueba no distingue entre volumen en la unidad de venta y volumen en una medida común. En etiquetas "$/kilo (en caja de X kilos)" se desconoce si el volumen son cajas o kilos. Sigue pendiente la respuesta de ODEPA.
+
 **(Cierre)** La aclaración "(volumen en unidades)" aparece solo en 5 productos: zapallo, cebolla, sandía, rabanito y ajo. En el resto se asume que el volumen va en la unidad de venta. Pendiente de confirmar con ODEPA.
 
 ### D-15 · Origen nacional frente a extranjero
@@ -128,6 +131,7 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 - **Decisión:** se clasifica como extranjero un origen de la lista de 13 países (incluida "Importada(o)"); todo lo demás es nacional.
 - **Justificación:** la lista es pequeña y explícita. El resto de `Origen` mezcla regiones, provincias y comunas, y no se unifica.
 - **Impacto:** se usa en P3. La parte de P2 sobre origen fuera de la RM queda diferida.
+
 **(Actualización)** Seis productos son extranjeros en ≥95% de sus filas (camote, coco, jengibre, mango, piña, plátano) y se excluyen de P3 por no ofrecer alternativa nacional. P3 se enfoca en palta, poroto verde, sandía, zapallo, cebolla, limón y ajo. Se descartan por pocas filas o por ruido: maracuyá, pera asiática, poroto granado y melón. P3 se calculará por volumen (dentro de cada producto y etiqueta) y se contrastará con el cálculo por filas.
 
 ### D-16 · Calidad ordinal (provisoria)
@@ -143,7 +147,9 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 - **Alternativas:** comparar solo dentro de cada etiqueta.
 - **Impacto:** quedan fuera de la conversión las unidades sin kilos (lechuga por unidad, docenas de atados) y las que traen rangos. Las diferencias por envase, variedad y calidad se controlan aparte.
 - **Estado:** se confirma después de revisar las 191 etiquetas (celda 18).
+
 **(Actualización)** Las 191 etiquetas se clasifican con `src/unidades.py` en: kilo, kilos_envase, unidades, kilo_vol_unidades, unidades_vol_unidades, rango y otro. `precio_kg` solo se calcula para kilo, kilos_envase y kilo_vol_unidades. Las demás se comparan dentro de su propia etiqueta.
+
 **(Cierre)** `precio_kg` cubre el 69,9% de las filas. Quedan sin precio por kilo las unidades (28,4%), los rangos (0,9%) y dos etiquetas en gramos. La razón entre el mayor y el menor precio por kilo de un producto va de 2,4 a 3,7 en los seis productos más dispersos: no hay falla grosera, pero tampoco validación. La validación controlada (mismo mercado, fecha, variedad y calidad entre dos etiquetas) se hace en el análisis de precios.
 
 ### D-18 · Ponderación al agregar precios (provisoria)
