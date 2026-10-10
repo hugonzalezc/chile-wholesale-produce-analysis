@@ -53,6 +53,7 @@ def agregar_derivadas(df):
 def limpiar(df):
     """Excluye las filas sin transacción (decisión D-10). Devuelve (df, registro)."""
     registro = [("filas iniciales", len(df))]
+    # En la auditoría, volumen 0 coincide con los tres precios en 0 (D-10)
     sin_trans = df["Volumen"] == 0
     registro.append(("filas sin transacción excluidas", int(sin_trans.sum())))
     df = df[~sin_trans].copy()
