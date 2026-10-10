@@ -2,14 +2,15 @@
 
 Análisis exploratorio de los registros de comercialización de frutas y hortalizas en mercados mayoristas de Chile, con datos de ODEPA. Se limpian y auditan los datos (incluyendo unidades de venta no comparables entre sí) y se describen patrones de precio, volumen, origen y mercado con Python, SQL y un dashboard en Power BI. Se describen asociaciones y diferencias observadas, no causalidad.
 
-> 🚧 **Proyecto en construcción.** Última actualización: [09-10-2026]
+> 🚧 **Proyecto en construcción.** Última actualización: [10-10-2026]
 
 ## Estado
 
 - [x] Estructura del repositorio y documentación de los datos
 - [x] Carga y auditoría de datos
 - [x] Limpieza
-- [ ] Análisis de volúmenes, precios y temporal
+- [x] Análisis de volúmenes y origen (P2, P3)
+- [ ] Análisis de precios y temporal (P1, P4–P6)
 - [ ] Base de datos y consultas SQL
 - [ ] Dashboard
 - [ ] Conclusiones e informe
@@ -18,13 +19,13 @@ Análisis exploratorio de los registros de comercialización de frutas y hortali
 
 | # | Pregunta | Resultado esperado | Respuesta |
 | --- | --- | --- | --- |
-| P1 | Para un mismo producto y unidad, ¿qué mercados muestran mayor variabilidad de precios entre 2020 y 2025, y qué cambio acumulado tuvieron? | *(tu hipótesis)* | Pendiente |
-| P2 | Dentro de cada producto y unidad, ¿qué proporción del volumen se registra en mercados de la Región Metropolitana, y cambió entre 2020 y 2026? | *(tu hipótesis)* | Pendiente |
-| P3 | Dentro de cada producto, ¿cómo ha evolucionado la participación del origen extranjero en el volumen entre 2020 y 2026? | *(tu hipótesis)* | Pendiente |
-| P4 | ¿Cuánto del cambio nominal de precios entre 2020 y 2025 corresponde a inflación general, y qué productos subieron o bajaron en términos reales? | *(tu hipótesis)* | Pendiente |
-| P5 | Dentro de un mismo producto y unidad, ¿la calidad reportada se asocia con diferencias de precio, y de qué magnitud? | *(tu hipótesis)* | Pendiente |
-| P6 | ¿Qué productos muestran un patrón estacional estable, con los mismos meses de precio alto y bajo en años distintos? | *(tu hipótesis)* | Pendiente |
-| P7 *(opcional)* | Si se ajusta una tendencia simple con 2020–2024, ¿cuánto se acerca a lo observado en 2025, frente a repetir el valor del mismo mes del año anterior? | *(tu hipótesis)* | Pendiente |
+| P1 | Para un mismo producto y unidad, ¿qué mercados muestran mayor variabilidad de precios entre 2020 y 2025, y qué cambio acumulado tuvieron? | - | Pendiente |
+| P2 | Dentro de cada producto, ¿qué proporción del volumen se registra en mercados de la Región Metropolitana, y cambió entre 2020 y 2026? | Entre 40% y 55%, con tendencia al alza | Entre 44% y 60% según la medida, sin tendencia clara: el producto típico baja (54% → 47%), el total de kilos no (55% → 57%) |
+| P3 | Dentro de cada producto, ¿cómo ha evolucionado la participación del origen extranjero en las filas reportadas entre 2020 y 2026? | Entre 12% y 18%, con leve alza | 8,8% → 10,9% de las filas, sin un giro general: sube en sandía, zapallo y limón, y no muestra tendencia en palta, poroto verde ni cebolla |
+| P4 | ¿Cuánto del cambio nominal de precios entre 2020 y 2025 corresponde a inflación general, y qué productos subieron o bajaron en términos reales? | - | Pendiente |
+| P5 | Dentro de un mismo producto y unidad, ¿la calidad reportada se asocia con diferencias de precio, y de qué magnitud? | - | Pendiente |
+| P6 | ¿Qué productos muestran un patrón estacional estable, con los mismos meses de precio alto y bajo en años distintos? | - | Pendiente |
+| P7 *(opcional)* | Si se ajusta una tendencia simple con 2020–2024, ¿cuánto se acerca a lo observado en 2025, frente a repetir el valor del mismo mes del año anterior? | - | Pendiente |
 
 Las preguntas pueden ajustarse tras la auditoría de datos. Cualquier cambio o descarte se documenta en [`docs/decisiones.md`](docs/decisiones.md).
 
@@ -73,8 +74,8 @@ Python, Pandas, Matplotlib, Seaborn, SQLite, Power BI, Jupyter, Git.
 
 ## Limitaciones
 
-- La unidad de `Volumen` no está especificada por la fuente; se trabaja con una hipótesis que se pone a prueba en la auditoría.
-- Los volúmenes no se suman entre productos ni entre unidades distintas.
+- La unidad de `Volumen` no está especificada por la fuente; se trabaja con una hipótesis (D-14), pendiente de confirmar con ODEPA.
+- Los volúmenes no se suman entre productos. Entre etiquetas de un mismo producto solo se suman en kilos, bajo esa hipótesis.
 - 2026 es un año incompleto; las comparaciones anuales usan los mismos meses.
 - Los precios son nominales, salvo en los análisis ajustados por inflación.
 - Solo se cubren los mercados que ODEPA monitorea, no todo el comercio del país.
