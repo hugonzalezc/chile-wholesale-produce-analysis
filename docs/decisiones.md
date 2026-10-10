@@ -174,6 +174,7 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 - **Fecha:** 2026-10-09
 - **Decisión:** la participación extranjera se mide por volumen, dentro de la etiqueta de unidad principal de cada producto con ambos orígenes (≥300 filas), para siete productos. Se contrasta con la proporción de filas.
 - **Impacto:** no permite generalizar a productos casi siempre importados ni a los que casi no se importan.
+- **Estado:** reemplazada por la entrada "D-21 (reemplazada)", más abajo.
 
 ### D-21 (reemplazada)
 El método original (etiqueta principal por producto) se descartó: la etiqueta de unidad está ligada al origen (el limón importado se vende en `$/caja 24 kilos` y el nacional en otros envases), y en la palta dio 0% de importado cuando el conteo por filas daba 21–36%.
@@ -190,7 +191,8 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Contexto:** los mayores cambios de participación de la RM por (producto, unidad) son etiquetas que aparecen o desaparecen: manzana `bandeja 18 kilos granel` (0% hasta 2022, luego 87–98% en Vega Central), lechuga `caja 24 unidades` (Lo Valledor pasa de ~170 filas por año a ~0 desde 2023), ají `caja 12 kilos` (cinco mercados hasta 2022, después casi solo Vega Central). El criterio de panel "presente los 7 años" aceptaba grupos con una o dos filas por año.
 - **Decisión:** medida principal por producto en kilos (`kilos_envase`, cobertura ≥ 80% en kilos), que no depende de qué etiqueta use cada mercado. Contraste: grupos con presencia sostenida (≥20 filas por año, ≥5 en la RM y ≥5 fuera de ella) y proporción de filas.
 - **Justificación:** sumar kilos entre etiquetas del mismo producto evita la rotación de etiquetas, a cambio de depender de la hipótesis de `Volumen` (D-14).
-- **Impacto:** dos medidas con señales distintas (promedio por grupos −5 pp; 12 productos grandes en kilos +1 pp). Se reporta como "sin tendencia concluyente", con ambas cifras.
+- **Impacto:** dos medidas con señales distintas (promedio por grupos −5 pp; 12 productos grandes en kilos +1 pp). Se reporta como "sin tendencia concluyente", con ambas cifras. 
+(Con los 46 productos, el promedio por producto baja 7 pp; ver D-25.)
 
 ### D-24 · Medida en kilos de P3 limitada
 - **Fecha:** 2026-10-09
@@ -207,5 +209,5 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 
 ### D-26 · Cierre de P3
 - **Fecha:** 2026-10-09
-- **Decisión:** la medida de P3 es la proporción de filas extranjeras por producto y año. Los seis productos casi siempre importados explican el nivel global, no la tendencia.
+- **Decisión:** la medida de P3 es la proporción de filas extranjeras por producto y año. Los seis productos casi siempre importados explican más de la mitad del nivel global y cerca de una quinta parte del alza (cálculo aproximado).
 - **Impacto:** la conclusión es por filas, no por volumen. La palta no permite separar un cambio real de un cambio de reporte.
