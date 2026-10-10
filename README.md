@@ -70,7 +70,33 @@ Python, Pandas, Matplotlib, Seaborn, SQLite, Power BI, Jupyter, Git.
 
 ## Cómo reproducirlo
 
-*(Se completa al final: instalación y orden de ejecución de los notebooks.)*
+Probado con Python 3.12 en Windows.
+
+```bash
+git clone https://github.com/hugonzalezc/chile-wholesale-produce-analysis.git
+cd chile-wholesale-produce-analysis
+python -m venv .venv
+# Windows: .venv\Scripts\Activate.ps1   |   macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Los CSV crudos ya están en `data/raw/`. Ejecuta los notebooks en este orden, **desde la carpeta `notebooks/`** (las rutas son relativas):
+
+| Orden | Notebook | Qué hace | Salida |
+| --- | --- | --- | --- |
+| 1 (opcional) | `01_carga_y_auditoria.ipynb` | Diagnóstico de los datos crudos | Solo lectura |
+| 2 | `02_limpieza.ipynb` | Limpia y genera el dataset | `data/processed/precios_limpio.parquet` |
+| 3 | `03_eda_volumenes.ipynb` | P2 y P3 | `images/` |
+
+El notebook 01 carga todo como texto y usa más de 1 GB de memoria; el 02 no lo necesita. Los notebooks 04 a 06 están en desarrollo.
+
+Para ejecutarlos sin abrir Jupyter:
+
+```bash
+cd notebooks
+jupyter nbconvert --to notebook --execute --inplace 02_limpieza.ipynb
+jupyter nbconvert --to notebook --execute --inplace 03_eda_volumenes.ipynb
+```
 
 ## Limitaciones
 
