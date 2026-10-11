@@ -225,3 +225,5 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Decisión:** una sola etiqueta por serie (producto y mercado), la de más meses con al menos 5 filas. Medidas en logaritmos y dentro de la serie, que no dependen del factor de conversión. Volatilidad: desviación estándar de la variación entre meses consecutivos. Cambio: mediana de 2025 frente a mediana de 2020. Cada medida se normaliza por la mediana del mismo producto entre mercados, y se resume por mercado con productos de 3 o más mercados.
 - **Justificación:** controla el efecto del envase (D-27) y evita sacar conclusiones sobre un mercado por vender otros productos.
 - **Impacto:** la volatilidad incluye estacionalidad y mezcla de variedades y calidades. Los mercados con pocas series pueden salir del análisis.
+
+**Actualización (2026-10-10):** el resumen por mercado solo se interpreta con mercados de 5 o más productos. Mapocho venta directa entra con 1 producto y queda fuera. El orden de los mercados es estable ante cambios de umbrales (Spearman 0,93–0,99 con min_meses 36 y 60 y min_obs 3 y 10).
