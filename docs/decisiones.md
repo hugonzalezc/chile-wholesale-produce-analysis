@@ -240,3 +240,10 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Resultado:** prima mediana de Primera sobre Segunda de 21,1% (248.283 pares), con alta variación por producto (de 11,1% a 40,0%).
 - **Limitaciones:** en mango, Primera y Segunda tienen el mismo precio en 2.572 de 3.921 pares y en 426 Primera cuesta menos (origen Perú y Brasil: 97%); cebolla aporta 906 pares sin prima positiva. Sin mango, la mediana es 21,4% y Primera es más cara en el 99,5% de los pares. Los precios se cotizan en números redondos.
 
+### D-31 · Método y cierre de P6 (cierra D-18)
+- **Fecha:** 2026-10-11
+- **Contexto:** la estabilidad estacional con precios nominales se contamina con la deriva: en datos sintéticos, productos sin estacionalidad dieron 0,92–0,95.
+- **Decisión:** restar de cada año y mes la mediana entre productos (movimiento común) y evaluar contra una referencia de azar por producto (200 mezclas de meses dentro de cada año, `p_azar`).
+- **Resultado:** 44 de 82 productos evaluables. Tras el ajuste, 16 fuertes (≥ 0,70), 10 moderados, 11 débiles y 7 sin evidencia. Los 14 más estables antes del ajuste siguen siéndolo (≥ 0,75). Piña, Betarraga y Mango bajan; Coliflor, Brócoli, Jengibre y Acelga suben.
+- **Limitaciones:** frutas de temporada corta sin evaluar; el ajuste también quita patrones comunes a todos los productos.
+- **D-18:** ni P1, P5 ni P6 ponderan por volumen. Todas usan medianas sin ponderar. Queda cerrada.
