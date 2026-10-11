@@ -9,8 +9,8 @@ Análisis exploratorio de los registros de comercialización de frutas y hortali
 - [x] Estructura del repositorio y documentación de los datos
 - [x] Carga y auditoría de datos
 - [x] Limpieza
-- [x] Análisis de volúmenes y origen (P2, P3)
-- [ ] Análisis de precios y temporal (P1, P4–P6)
+- [x] Análisis de volúmenes, origen y precios (P2, P3, P1, P5)
+- [ ] Análisis temporal y inflación (P6, P4)
 - [ ] Base de datos y consultas SQL
 - [ ] Dashboard
 - [ ] Conclusiones e informe
@@ -19,11 +19,11 @@ Análisis exploratorio de los registros de comercialización de frutas y hortali
 
 | # | Pregunta | Resultado esperado | Respuesta |
 | --- | --- | --- | --- |
-| P1 | Para un mismo producto y unidad, ¿qué mercados muestran mayor variabilidad de precios entre 2020 y 2025, y qué cambio acumulado tuvieron? | - | Pendiente |
+| P1 | Para un mismo producto y unidad, ¿qué mercados muestran mayor variabilidad de precios entre 2020 y 2025, y qué cambio acumulado tuvieron? | Los mercados grandes fluctúan más | Cuatro mercados más volátiles que el típico (Talca, Lo Valledor, Limarí, Vega Central) y cuatro menos (Femacal, La Palmera, Vega Modelo, Lagunitas); el tamaño no se asocia con la volatilidad. En cambio acumulado solo se distinguen Vega Central (−8,6%), Limarí (−5,0%) y Lagunitas (+2,7%) |
 | P2 | Dentro de cada producto, ¿qué proporción del volumen se registra en mercados de la Región Metropolitana, y cambió entre 2020 y 2026? | Entre 40% y 55%, con tendencia al alza | Entre 44% y 60% según la medida, sin tendencia clara: el producto típico baja (54% → 47%), el total de kilos no (55% → 57%) |
 | P3 | Dentro de cada producto, ¿cómo ha evolucionado la participación del origen extranjero en las filas reportadas entre 2020 y 2026? | Entre 12% y 18%, con leve alza | 8,8% → 10,9% de las filas, sin un giro general: sube en sandía, zapallo y limón, y no muestra tendencia en palta, poroto verde ni cebolla |
 | P4 | ¿Cuánto del cambio nominal de precios entre 2020 y 2025 corresponde a inflación general, y qué productos subieron o bajaron en términos reales? | - | Pendiente |
-| P5 | Dentro de un mismo producto y unidad, ¿la calidad reportada se asocia con diferencias de precio, y de qué magnitud? | - | Pendiente |
+| P5 | Dentro de un mismo producto y unidad, ¿la calidad reportada se asocia con diferencias de precio, y de qué magnitud? | Prima de 15–20% en la mayoría de los casos | Prima mediana de 21,1% de Primera sobre Segunda (de 11% a 40% según el producto); Primera es más cara en el 98,3% de los pares |
 | P6 | ¿Qué productos muestran un patrón estacional estable, con los mismos meses de precio alto y bajo en años distintos? | - | Pendiente |
 | P7 *(opcional)* | Si se ajusta una tendencia simple con 2020–2024, ¿cuánto se acerca a lo observado en 2025, frente a repetir el valor del mismo mes del año anterior? | - | Pendiente |
 

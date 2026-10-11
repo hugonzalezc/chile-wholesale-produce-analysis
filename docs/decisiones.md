@@ -227,3 +227,16 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Impacto:** la volatilidad incluye estacionalidad y mezcla de variedades y calidades. Los mercados con pocas series pueden salir del análisis.
 
 **Actualización (2026-10-10):** el resumen por mercado solo se interpreta con mercados de 5 o más productos. Mapocho venta directa entra con 1 producto y queda fuera. El orden de los mercados es estable ante cambios de umbrales (Spearman 0,93–0,99 con min_meses 36 y 60 y min_obs 3 y 10).
+
+### D-29 · Cierre de P1
+- **Fecha:** 2026-10-10
+- **Decisión:** el resumen por mercado se interpreta solo con mercados de 5 o más productos (Mapocho queda fuera). Se usan medianas sin ponderar por volumen. La incertidumbre se mide con bootstrap sobre productos (intervalo de 90%), y un mercado se considera distinto del típico solo si su intervalo excluye 1 (volatilidad) o 0 (cambio).
+- **Resultado:** cuatro mercados más volátiles que el típico y cuatro menos. En cambio acumulado, solo Vega Central, Limarí y Lagunitas se distinguen. El tamaño no se asocia con la volatilidad.
+- **Impacto:** la afirmación de que los cinco más volátiles subieron menos, hecha antes del bootstrap, no se sostiene.
+
+### D-30 · Método y cierre de P5 (cierra D-16)
+- **Fecha:** 2026-10-10
+- **Decisión:** niveles de calidad 1 a 4 (Primera/1a a Cuarta/4a). Las variantes (guarda, cosecha, amarillo, plateado, nueva(o), lavada) se comparan solo con su misma variante. Quedan fuera Extra, Especial, calibres y estados de madurez sin nivel (12,8% de las filas). La prima se mide en el mismo día, mercado, producto, variedad, etiqueta y origen, así que no depende de la conversión a kilos.
+- **Resultado:** prima mediana de Primera sobre Segunda de 21,1% (248.283 pares), con alta variación por producto (de 11,1% a 40,0%).
+- **Limitaciones:** el mango no diferencia precios entre calidades; los precios se cotizan en números redondos.
+
