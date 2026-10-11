@@ -238,5 +238,5 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Fecha:** 2026-10-10
 - **Decisión:** niveles de calidad 1 a 4 (Primera/1a a Cuarta/4a). Las variantes (guarda, cosecha, amarillo, plateado, nueva(o), lavada) se comparan solo con su misma variante. Quedan fuera Extra, Especial, calibres y estados de madurez sin nivel (12,8% de las filas). La prima se mide en el mismo día, mercado, producto, variedad, etiqueta y origen, así que no depende de la conversión a kilos.
 - **Resultado:** prima mediana de Primera sobre Segunda de 21,1% (248.283 pares), con alta variación por producto (de 11,1% a 40,0%).
-- **Limitaciones:** el mango no diferencia precios entre calidades; los precios se cotizan en números redondos.
+- **Limitaciones:** en mango, Primera y Segunda tienen el mismo precio en 2.572 de 3.921 pares y en 426 Primera cuesta menos (origen Perú y Brasil: 97%); cebolla aporta 906 pares sin prima positiva. Sin mango, la mediana es 21,4% y Primera es más cara en el 99,5% de los pares. Los precios se cotizan en números redondos.
 
