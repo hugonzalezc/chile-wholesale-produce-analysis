@@ -211,3 +211,17 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Fecha:** 2026-10-09
 - **Decisión:** la medida de P3 es la proporción de filas extranjeras por producto y año. Los seis productos casi siempre importados explican más de la mitad del nivel global y cerca de una quinta parte del alza (cálculo aproximado).
 - **Impacto:** la conclusión es por filas, no por volumen. La palta no permite separar un cambio real de un cambio de reporte.
+
+### D-27 · Validación del precio por kilo (cierre de D-17)
+- **Fecha:** 2026-10-10
+- **Contexto:** se compararon 28.570 grupos con exactamente dos etiquetas (mismo día, mercado, producto, variedad, calidad y origen). De ellos, 6.164 comparten forma de envase y difieren solo en el peso.
+- **Resultado:** con el mismo envase, la diferencia mediana del precio por kilo es 6,1% (66% dentro de ±10%, 91,5% dentro de ±25%). El par más grande, bandeja 18 frente a bandeja 20 (3.586 pares), da ratio 0,98 y diferencia de 4,9%. Con envases distintos, la mediana es 13,7%, con un patrón sistemático: bins y sacos salen más baratos por kilo que cajas, mallas y bandejas.
+- **Decisión:** `precio_kg` se acepta para comparar entre etiquetas, con una precisión de unos ±6–10% para el par típico. Diferencias menores a ~10% no se interpretan.
+- **Limitaciones:** la prueba está dominada por un par (58% de los casos); hay pares puntuales débiles (bandeja 18 frente a bandeja 8, n=69, ratio 0,71; caja 10 frente a caja 18, diferencia de 27%). No valida la hipótesis de `Volumen` (D-14) ni los kilos de P2.
+- **Impacto:** las diferencias de 10–25% entre envases pueden fabricar saltos de precio si una serie cambia de etiqueta.
+
+### D-28 · Método de P1 (provisoria)
+- **Fecha:** 2026-10-10
+- **Decisión:** una sola etiqueta por serie (producto y mercado), la de más meses con al menos 5 filas. Medidas en logaritmos y dentro de la serie, que no dependen del factor de conversión. Volatilidad: desviación estándar de la variación entre meses consecutivos. Cambio: mediana de 2025 frente a mediana de 2020. Cada medida se normaliza por la mediana del mismo producto entre mercados, y se resume por mercado con productos de 3 o más mercados.
+- **Justificación:** controla el efecto del envase (D-27) y evita sacar conclusiones sobre un mercado por vender otros productos.
+- **Impacto:** la volatilidad incluye estacionalidad y mezcla de variedades y calidades. Los mercados con pocas series pueden salir del análisis.
