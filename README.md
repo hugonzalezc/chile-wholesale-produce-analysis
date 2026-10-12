@@ -2,15 +2,14 @@
 
 Análisis exploratorio de los registros de comercialización de frutas y hortalizas en mercados mayoristas de Chile, con datos de ODEPA. Se limpian y auditan los datos (incluyendo unidades de venta no comparables entre sí) y se describen patrones de precio, volumen, origen y mercado con Python, SQL y un dashboard en Power BI. Se describen asociaciones y diferencias observadas, no causalidad.
 
-> 🚧 **Proyecto en construcción.** Última actualización: [10-10-2026]
+> 🚧 **Proyecto en construcción.** Última actualización: [12-10-2026]
 
 ## Estado
 
 - [x] Estructura del repositorio y documentación de los datos
 - [x] Carga y auditoría de datos
 - [x] Limpieza
-- [x] Análisis de volúmenes, origen y precios (P2, P3, P1, P5)
-- [ ] Análisis temporal y inflación (P6, P4)
+- [x] Análisis de volúmenes, origen, precios, estacionalidad e inflación (P1 a P6)
 - [ ] Base de datos y consultas SQL
 - [ ] Dashboard
 - [ ] Conclusiones e informe
@@ -22,7 +21,7 @@ Análisis exploratorio de los registros de comercialización de frutas y hortali
 | P1 | Para un mismo producto y unidad, ¿qué mercados muestran mayor variabilidad de precios entre 2020 y 2025, y qué cambio acumulado tuvieron? | Los mercados grandes fluctúan más | Cuatro mercados más volátiles que el típico (Talca, Lo Valledor, Limarí, Vega Central) y cuatro menos (Femacal, La Palmera, Vega Modelo, Lagunitas); el tamaño no se asocia con la volatilidad. En cambio acumulado solo se distinguen Vega Central (−8,6%), Limarí (−5,0%) y Lagunitas (+2,7%) |
 | P2 | Dentro de cada producto, ¿qué proporción del volumen se registra en mercados de la Región Metropolitana, y cambió entre 2020 y 2026? | Entre 40% y 55%, con tendencia al alza | Entre 44% y 60% según la medida, sin tendencia clara: el producto típico baja (54% → 47%), el total de kilos no (55% → 57%) |
 | P3 | Dentro de cada producto, ¿cómo ha evolucionado la participación del origen extranjero en las filas reportadas entre 2020 y 2026? | Entre 12% y 18%, con leve alza | 8,8% → 10,9% de las filas, sin un giro general: sube en sandía, zapallo y limón, y no muestra tendencia en palta, poroto verde ni cebolla |
-| P4 | ¿Cuánto del cambio nominal de precios entre 2020 y 2025 corresponde a inflación general, y qué productos subieron o bajaron en términos reales? | - | Pendiente |
+| P4 | ¿Cuánto del cambio nominal de precios entre 2020 y 2025 corresponde a inflación general, y qué productos subieron o bajaron en términos reales? | — | El IPC subió 36,9% y el producto mediano 26,8% (−7,1% real). Suben en términos reales plátano, piña, perejil, manzana y pepino ensalada; bajan trece productos, entre ellos papa, zapallo, palta, cebolla y frutilla |
 | P5 | Dentro de un mismo producto y unidad, ¿la calidad reportada se asocia con diferencias de precio, y de qué magnitud? | Prima de 15–20% en la mayoría de los casos | Prima mediana de 21,1% de Primera sobre Segunda (de 11% a 40% según el producto); Primera es más cara en el 98,3% de los pares |
 | P6 | ¿Qué productos muestran un patrón estacional estable, con los mismos meses de precio alto y bajo en años distintos? | — | 26 de 44 productos evaluables tienen un patrón estacional estable (16 fuerte): Limón, Frutilla, Arándano, Manzana y Naranja entre otros. Tomate, cebolla y papa, tres de los más transados, no muestran un patrón estable |
 | P7 *(opcional)* | Si se ajusta una tendencia simple con 2020–2024, ¿cuánto se acerca a lo observado en 2025, frente a repetir el valor del mismo mes del año anterior? | - | Pendiente |

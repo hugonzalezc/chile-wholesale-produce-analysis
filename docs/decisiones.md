@@ -254,3 +254,9 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Decisión:** empalmar con el factor de enlace del INE, con R = 101,04 (diciembre de 2023 en base 2023) deducido de siete cifras oficiales. Guardas en el notebook: sin saltos mensuales mayores a 3% y inflación de 2023 a 2025 dentro de 0,15 pp de la oficial.
 - **Limitaciones:** R no viene directo del INE; el error es menor a ±0,02%. Es el IPC general de hogares urbanos.
 - **Impacto:** solo P4. Reemplazable por la serie empalmada oficial si se obtiene.
+
+### D-33 · Método y cierre de P4
+- **Fecha:** 2026-10-11
+- **Decisión:** deflactar mes a mes por el IPC empalmado (D-32) las series de cada mercado y producto (una etiqueta). Comparar la mediana de 2025 con la de 2020 (mínimo 9 meses en cada año) y resumir por producto con la mediana entre mercados (3 o más). Clasificar con ±10% y 2/3 de los mercados (criterio de trabajo), mostrando la sensibilidad con 5% y 15% y con bases en 2021 y 2022.
+- **Resultado:** IPC +36,9%; producto mediano +26,8% nominal y −7,1% real; 5 suben, 13 bajan y 14 sin cambio claro.
+- **Limitaciones:** IPC general frente a precios mayoristas; 9 productos con solo 3 o 4 mercados; año base de 2020.
