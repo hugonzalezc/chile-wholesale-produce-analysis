@@ -247,3 +247,10 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Resultado:** 44 de 82 productos evaluables. Tras el ajuste, 16 fuertes (≥ 0,70), 10 moderados, 11 débiles y 7 sin evidencia. Los 14 más estables antes del ajuste siguen siéndolo (≥ 0,75). Piña, Betarraga y Mango bajan; Coliflor, Brócoli, Jengibre y Acelga suben.
 - **Limitaciones:** frutas de temporada corta sin evaluar; el ajuste también quita patrones comunes a todos los productos.
 - **D-18:** ni P1, P5 ni P6 ponderan por volumen. Todas usan medianas sin ponderar. Queda cerrada.
+
+### D-32 · Empalme del IPC (base 2018 a base 2023)
+- **Fecha:** 2026-10-11
+- **Contexto:** el IPC armado a mano mezclaba base 2018=100 (hasta diciembre de 2023) y base 2023=100 (desde enero de 2024). Usado tal cual, la razón 2025/2020 daba +3,2% frente a ~+37% real.
+- **Decisión:** empalmar con el factor de enlace del INE, con R = 101,04 (diciembre de 2023 en base 2023) deducido de siete cifras oficiales. Guardas en el notebook: sin saltos mensuales mayores a 3% y inflación de 2023 a 2025 dentro de 0,15 pp de la oficial.
+- **Limitaciones:** R no viene directo del INE; el error es menor a ±0,02%. Es el IPC general de hogares urbanos.
+- **Impacto:** solo P4. Reemplazable por la serie empalmada oficial si se obtiene.
