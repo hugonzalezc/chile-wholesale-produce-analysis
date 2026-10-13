@@ -2,7 +2,7 @@
 
 Análisis exploratorio de los registros de comercialización de frutas y hortalizas en mercados mayoristas de Chile, con datos de ODEPA. Se limpian y auditan los datos (incluyendo unidades de venta no comparables entre sí) y se describen patrones de precio, volumen, origen y mercado con Python, SQL y un dashboard en Power BI. Se describen asociaciones y diferencias observadas, no causalidad.
 
-> 🚧 **Proyecto en construcción.** Última actualización: [12-10-2026]
+> 🚧 **Proyecto en construcción.** Última actualización: [13-10-2026]
 
 ## Estado
 
@@ -10,9 +10,9 @@ Análisis exploratorio de los registros de comercialización de frutas y hortali
 - [x] Carga y auditoría de datos
 - [x] Limpieza
 - [x] Análisis de volúmenes, origen, precios, estacionalidad e inflación (P1 a P6)
-- [ ] Base de datos y consultas SQL
-- [ ] Dashboard
-- [ ] Conclusiones e informe
+- [x] Conclusiones (notebook 06)
+- [ ] Base de datos SQL
+- [ ] Dashboard e informe
 
 ## Preguntas de investigación
 
@@ -24,7 +24,7 @@ Análisis exploratorio de los registros de comercialización de frutas y hortali
 | P4 | ¿Cuánto del cambio nominal de precios entre 2020 y 2025 corresponde a inflación general, y qué productos subieron o bajaron en términos reales? | — | El IPC subió 36,9% y el producto mediano 26,8% (−7,1% real). Suben en términos reales plátano, piña, perejil, manzana y pepino ensalada; bajan trece productos, entre ellos papa, zapallo, palta, cebolla y frutilla |
 | P5 | Dentro de un mismo producto y unidad, ¿la calidad reportada se asocia con diferencias de precio, y de qué magnitud? | Prima de 15–20% en la mayoría de los casos | Prima mediana de 21,1% de Primera sobre Segunda (de 11% a 40% según el producto); Primera es más cara en el 98,3% de los pares |
 | P6 | ¿Qué productos muestran un patrón estacional estable, con los mismos meses de precio alto y bajo en años distintos? | — | 26 de 44 productos evaluables tienen un patrón estacional estable (16 fuerte): Limón, Frutilla, Arándano, Manzana y Naranja entre otros. Tomate, cebolla y papa, tres de los más transados, no muestran un patrón estable |
-| P7 *(opcional)* | Si se ajusta una tendencia simple con 2020–2024, ¿cuánto se acerca a lo observado en 2025, frente a repetir el valor del mismo mes del año anterior? | - | Pendiente |
+| P7 *(opcional)* | Si se ajusta una tendencia simple con 2020–2024, ¿cuánto se acerca a lo observado en 2025, frente a repetir el valor del mismo mes del año anterior? | — | No realizada: pregunta opcional, descartada por alcance. Ver D-34 |
 
 Las preguntas pueden ajustarse tras la auditoría de datos. Cualquier cambio o descarte se documenta en [`docs/decisiones.md`](docs/decisiones.md).
 
@@ -38,7 +38,31 @@ Las preguntas pueden ajustarse tras la auditoría de datos. Cualquier cambio o d
 
 ## Hallazgos principales
 
-*(Se completa al terminar el análisis, organizado por pregunta.)*
+Los resultados se refieren a los 12 mercados mayoristas que monitorea ODEPA y describen asociaciones, no causas. El detalle y las limitaciones de cada pregunta están en los notebooks 03 a 06.
+
+**1. La RM concentra entre 44% y 60% del volumen monitoreado, sin una tendencia clara (P2).** El producto típico baja de 54% a 47%, pero el total de kilos sube de 55% a 57%, porque los productos de mayor volumen casi no se mueven.
+
+![P2](images/p2_participacion_rm.png)
+
+**2. La participación extranjera es de ~10% de las series y sube poco (P3).** Seis productos casi siempre importados explican más de la mitad del nivel y cerca de una quinta parte del alza.
+
+![P3](images/p3_origen_extranjero_filas.png)
+
+**3. Los precios mayoristas subieron menos que la inflación (P4).** Entre 2020 y 2025 el IPC subió 36,9% y el producto mediano 26,8%: un cambio real de −7,1%. Cinco productos suben en términos reales y trece bajan.
+
+![P4](images/p4_cambio_real.png)
+
+**4. Hay mercados más y menos volátiles, y no depende del tamaño (P1).** Entre los extremos hay unos 37% más de volatilidad.
+
+![P1](images/p1_variabilidad_mercados.png)
+
+**5. La calidad se paga: Primera cuesta ~21% más que Segunda (P5).** Con mucha variación entre productos, de 11% (palta) a 40% (melón).
+
+![P5](images/p5_prima_calidad.png)
+
+**6. 26 de 44 productos tienen un patrón estacional estable (P6).** Tomate y cebolla no lo tienen.
+
+![P6](images/p6_estacionalidad.png)
 
 ## Dashboard
 
@@ -101,9 +125,10 @@ jupyter nbconvert --to notebook --execute --inplace 03_eda_volumenes.ipynb
 
 - La unidad de `Volumen` no está especificada por la fuente; se trabaja con una hipótesis (D-14), pendiente de confirmar con ODEPA.
 - Los volúmenes no se suman entre productos. Entre etiquetas de un mismo producto solo se suman en kilos, bajo esa hipótesis.
-- 2026 es un año incompleto; las comparaciones anuales usan los mismos meses.
-- Los precios son nominales, salvo en los análisis ajustados por inflación.
 - Solo se cubren los mercados que ODEPA monitorea, no todo el comercio del país.
+- 2026 es un año incompleto; las comparaciones anuales usan los mismos meses.
+- Los precios son nominales, salvo en P4, donde se deflactan con el IPC general del INE, un índice de hogares urbanos y no de alimentos.
+- P6 evalúa 44 de los 82 productos.
 - Los resultados describen asociaciones, no relaciones causales.
 
 *(Se amplía al terminar el análisis.)*
