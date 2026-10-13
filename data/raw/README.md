@@ -72,7 +72,7 @@ Confirmado al cargar los archivos (notebook 01):
 
 1. El volumen está expresado en la unidad de comercialización de cada fila, salvo en las etiquetas que dicen "(volumen en unidades)" (hipótesis no confirmada por ODEPA; ver D-14).
 2. Los volúmenes no se suman entre productos. Dentro de un producto se suman entre etiquetas solo convirtiéndolos a kilos, y esa medida depende de la hipótesis anterior (D-23).
-3. Para comparar precios entre etiquetas distintas se usa el precio por kilo cuando existe; dentro de una misma etiqueta, el precio promedio ponderado por volumen (D-17 y D-18).
+3. Para comparar precios entre etiquetas distintas se usa el precio por kilo cuando existe (validado en D-27). Los análisis de P1, P4, P5 y P6 comparan dentro de una misma etiqueta y usan medianas sin ponderar por volumen (D-18, cerrada en D-31).
 4. Los precios están en pesos nominales (sin ajuste por inflación), salvo en el análisis de P4.
 
 ## Hallazgos de la auditoría (notebook 01)

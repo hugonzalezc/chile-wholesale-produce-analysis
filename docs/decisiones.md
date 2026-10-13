@@ -138,6 +138,7 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 - **Fecha:** 2026-10-04
 - **Decisión:** para P5, agrupar en Primera/1a, Segunda/2a y Tercera/3a, y excluir calibres y estados de madurez.
 - **Impacto:** se confirma tras ver cuántas filas y productos quedan con al menos dos calidades en la misma unidad.
+- **Estado:** cerrada en D-30.
 
 ### D-17 · Precio por kilo como medida comparable (provisoria)
 - **Fecha:** 2026-10-04
@@ -152,10 +153,13 @@ Registro de decisiones de diseño, limpieza y análisis, con su justificación. 
 
 **(Cierre)** `precio_kg` cubre el 69,9% de las filas. Quedan sin precio por kilo las unidades (28,4%), los rangos (0,9%) y dos etiquetas en gramos. La razón entre el mayor y el menor precio por kilo de un producto va de 2,4 a 3,7 en los seis productos más dispersos: no hay falla grosera, pero tampoco validación. La validación controlada (mismo mercado, fecha, variedad y calidad entre dos etiquetas) se hace en el análisis de precios.
 
+**(Estado)** Cerrada en D-27: precio_kg se acepta para comparar entre etiquetas, con una precisión de unos ±6–10%.
+
 ### D-18 · Ponderación al agregar precios (provisoria)
 - **Contexto:** la ponderación por volumen mezcla pesos de distinta base cuando se agrupan etiquetas.
 - **Decisión:** dentro de una misma etiqueta, ponderar por volumen. Entre etiquetas, usar volumen × kilos por unidad, y comparar siempre contra la mediana sin ponderar.
 - **Justificación:** el ponderado entre etiquetas depende de la hipótesis sobre `Volumen`, no confirmada. Si ambos métodos coinciden, la conclusión es más robusta.
+- **Estado:** cerrada en D-31: ni P1, P5 ni P6 ponderan por volumen; se usan medianas sin ponderar.
 
 ### D-19 · Formato y unidad de análisis
 - **Fecha:** 2026-10-04
@@ -249,14 +253,21 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **D-18:** ni P1, P5 ni P6 ponderan por volumen. Todas usan medianas sin ponderar. Queda cerrada.
 
 ### D-32 · Empalme del IPC (base 2018 a base 2023)
-- **Fecha:** 2026-10-11
+- **Fecha:** 2026-10-12
 - **Contexto:** el IPC armado a mano mezclaba base 2018=100 (hasta diciembre de 2023) y base 2023=100 (desde enero de 2024). Usado tal cual, la razón 2025/2020 daba +3,2% frente a ~+37% real.
 - **Decisión:** empalmar con el factor de enlace del INE, con R = 101,04 (diciembre de 2023 en base 2023) deducido de siete cifras oficiales. Guardas en el notebook: sin saltos mensuales mayores a 3% y inflación de 2023 a 2025 dentro de 0,15 pp de la oficial.
 - **Limitaciones:** R no viene directo del INE; el error es menor a ±0,02%. Es el IPC general de hogares urbanos.
 - **Impacto:** solo P4. Reemplazable por la serie empalmada oficial si se obtiene.
 
 ### D-33 · Método y cierre de P4
-- **Fecha:** 2026-10-11
+- **Fecha:** 2026-10-12
 - **Decisión:** deflactar mes a mes por el IPC empalmado (D-32) las series de cada mercado y producto (una etiqueta). Comparar la mediana de 2025 con la de 2020 (mínimo 9 meses en cada año) y resumir por producto con la mediana entre mercados (3 o más). Clasificar con ±10% y 2/3 de los mercados (criterio de trabajo), mostrando la sensibilidad con 5% y 15% y con bases en 2021 y 2022.
 - **Resultado:** IPC +36,9%; producto mediano +26,8% nominal y −7,1% real; 5 suben, 13 bajan y 14 sin cambio claro.
-- **Limitaciones:** IPC general frente a precios mayoristas; 9 productos con solo 3 o 4 mercados; año base de 2020.
+- **Sensibilidad al año base:** con bases en 2021 y 2022 el cambio real mediano sigue negativo (−4,4% con inflación de 31,6%; −11,6% con 16,6%). La clasificación por producto no es estable: correlación de rango entre bases de 0,39 a 0,58, y de los cinco productos que suben con la base 2020, solo la piña sube con las tres bases.
+- **Limitaciones:** IPC general frente a precios mayoristas; 9 productos con solo 3 o 4 mercados; los resultados por producto dependen del año base.
+
+### D-34 · P7 no realizada
+- **Fecha:** 2026-10-12
+- **Decisión:** no evaluar una tendencia simple frente a la repetición del mismo mes del año anterior.
+- **Justificación:** pregunta opcional, de menor prioridad que cerrar el proyecto y el de optimización. Con la estacionalidad de P6 (26 de 44 productos con patrón estable), se espera que la línea base ingenua supere a una tendencia lineal sin componente estacional. Una comparación justa exigiría una tercera alternativa (tendencia más perfil estacional).
+- **Impacto:** el proyecto describe patrones y no hace predicciones. Queda como trabajo futuro.

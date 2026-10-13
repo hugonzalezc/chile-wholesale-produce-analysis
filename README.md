@@ -2,7 +2,7 @@
 
 Análisis exploratorio de los registros de comercialización de frutas y hortalizas en mercados mayoristas de Chile, con datos de ODEPA. Se limpian y auditan los datos (incluyendo unidades de venta no comparables entre sí) y se describen patrones de precio, volumen, origen y mercado con Python, SQL y un dashboard en Power BI. Se describen asociaciones y diferencias observadas, no causalidad.
 
-> 🚧 **Proyecto en construcción.** Última actualización: [13-10-2026]
+> 🚧 **Proyecto en construcción.** Última actualización: 2026-10-13
 
 ## Estado
 
@@ -44,11 +44,11 @@ Los resultados se refieren a los 12 mercados mayoristas que monitorea ODEPA y de
 
 ![P2](images/p2_participacion_rm.png)
 
-**2. La participación extranjera es de ~10% de las series y sube poco (P3).** Seis productos casi siempre importados explican más de la mitad del nivel y cerca de una quinta parte del alza.
+**2. La participación extranjera es de ~10% de las filas reportadas y sube poco (P3).** Seis productos casi siempre importados explican más de la mitad del nivel y cerca de una quinta parte del alza.
 
 ![P3](images/p3_origen_extranjero_filas.png)
 
-**3. Los precios mayoristas subieron menos que la inflación (P4).** Entre 2020 y 2025 el IPC subió 36,9% y el producto mediano 26,8%: un cambio real de −7,1%. Cinco productos suben en términos reales y trece bajan.
+**3. Los precios mayoristas subieron menos que la inflación (P4).** Entre 2020 y 2025 el IPC subió 36,9% y el producto mediano 26,8%: un cambio real de −7,1%, que se mantiene negativo con otros años base. Por producto, con la base 2020 cinco suben y trece bajan en términos reales, pero esa clasificación depende del año base: solo la piña sube con las tres bases probadas.
 
 ![P4](images/p4_cambio_real.png)
 
@@ -75,8 +75,9 @@ chile-wholesale-produce-analysis/
 ├── README.md
 ├── data/
 │   ├── raw/           # CSV originales de ODEPA (no se modifican)
+│   ├── external/      # IPC del INE (armado a mano y serie empalmada)
 │   ├── interim/       # datos intermedios (generados, no versionados)
-│   └── processed/     # dataset limpio y base SQLite (generados, no versionados)
+│   └── processed/     # dataset limpio (generado, no versionado)
 ├── docs/
 │   └── decisiones.md  # bitácora de decisiones de limpieza y análisis
 ├── notebooks/         # 01 a 06, en orden de ejecución
@@ -110,15 +111,19 @@ Los CSV crudos ya están en `data/raw/`. Ejecuta los notebooks en este orden, **
 | 1 (opcional) | `01_carga_y_auditoria.ipynb` | Diagnóstico de los datos crudos | Solo lectura |
 | 2 | `02_limpieza.ipynb` | Limpia y genera el dataset | `data/processed/precios_limpio.parquet` |
 | 3 | `03_eda_volumenes.ipynb` | P2 y P3 | `images/` |
+| 4 | `04_analisis_precios.ipynb` | Validación del precio por kilo, P1 y P5 | `images/` |
+| 5 | `05_analisis_temporal.ipynb` | P6 y P4 (usa `data/external/ipc_ine.csv`) | `images/` |
+| 6 | `06_conclusiones.ipynb` | Conclusiones (solo texto) | — |
 
-El notebook 01 carga todo como texto y usa más de 1 GB de memoria; el 02 no lo necesita. Los notebooks 04 a 06 están en desarrollo.
+El notebook 01 carga todo como texto y usa más de 1 GB de memoria; el 02 no lo necesita. El 04 tarda varios minutos. Los remuestreos usan semilla fija, así que los resultados se reproducen.
 
 Para ejecutarlos sin abrir Jupyter:
 
 ```bash
 cd notebooks
-jupyter nbconvert --to notebook --execute --inplace 02_limpieza.ipynb
-jupyter nbconvert --to notebook --execute --inplace 03_eda_volumenes.ipynb
+for n in 02_limpieza 03_eda_volumenes 04_analisis_precios 05_analisis_temporal 06_conclusiones; do
+  jupyter nbconvert --to notebook --execute --inplace "$n.ipynb"
+done
 ```
 
 ## Limitaciones
@@ -130,8 +135,7 @@ jupyter nbconvert --to notebook --execute --inplace 03_eda_volumenes.ipynb
 - Los precios son nominales, salvo en P4, donde se deflactan con el IPC general del INE, un índice de hogares urbanos y no de alimentos.
 - P6 evalúa 44 de los 82 productos.
 - Los resultados describen asociaciones, no relaciones causales.
-
-*(Se amplía al terminar el análisis.)*
+- La clasificación de P4 por producto depende del año base (D-33).
 
 ## Fuente y atribución
 
