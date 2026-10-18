@@ -2,7 +2,7 @@
 
 Análisis exploratorio de los registros de comercialización de frutas y hortalizas en mercados mayoristas de Chile, con datos de ODEPA. Se limpian y auditan los datos (incluyendo unidades de venta no comparables entre sí) y se describen patrones de precio, volumen, origen y mercado con Python, SQL y un dashboard en Power BI. Se describen asociaciones y diferencias observadas, no causalidad.
 
-> 🚧 **Proyecto en construcción.** Última actualización: 2026-10-13
+> 🚧 **Proyecto en construcción.** Última actualización: 2026-10-18
 
 ## Estado
 
@@ -11,7 +11,7 @@ Análisis exploratorio de los registros de comercialización de frutas y hortali
 - [x] Limpieza
 - [x] Análisis de volúmenes, origen, precios, estacionalidad e inflación (P1 a P6)
 - [x] Conclusiones (notebook 06)
-- [ ] Base de datos SQL
+- [x] Base de datos SQL
 - [ ] Dashboard e informe
 
 ## Preguntas de investigación
@@ -68,6 +68,23 @@ Los resultados se refieren a los 12 mercados mayoristas que monitorea ODEPA y de
 
 *(Capturas al terminar.)*
 
+## Base de datos y consultas SQL
+
+El dataset limpio se carga en una base SQLite de una sola tabla (`precios`, 21 columnas) con una clave única (fecha, mercado, producto, variedad, calidad, unidad, origen), lo que confirma en SQL que no hay filas duplicadas. La base pesa varios cientos de MB, por eso no se versiona: se genera con el script.
+
+```bash
+python src/crear_bd.py      # crea data/processed/precios.db (requiere haber ejecutado el notebook 02)
+python src/consultas.py     # ejecuta sql/02_consultas_analisis.sql y muestra los resultados
+```
+
+| Consulta | Qué calcula | Coincide con |
+| --- | --- | --- |
+| Q1 | Panorama: filas, productos, mercados, regiones y fechas | Auditoría (notebook 01): 1.297.334 filas, 82 productos, 12 mercados y 9 regiones |
+| Q2 | Filas por año | Tabla de archivos de `data/raw/README.md` (2025 con 201 filas menos, las excluidas en la limpieza) |
+| Q3 | Filas por región | La RM concentra el 38,9% de las filas (notebook 02) |
+| Q4 | Participación extranjera por año (enero a septiembre), global y sin seis productos casi siempre importados | P3 (notebook 03): 8,81% → 10,89% y 2,95% → 4,72% |
+| Q5 | Precio ponderado por volumen frente al simple, tomate en bandeja de 18 kilos | El promedio simple sobreestima el precio entre 3,6% y 7,7% |
+
 ## Estructura del repositorio
 
 ```text
@@ -77,11 +94,11 @@ chile-wholesale-produce-analysis/
 │   ├── raw/           # CSV originales de ODEPA (no se modifican)
 │   ├── external/      # IPC del INE (armado a mano y serie empalmada)
 │   ├── interim/       # datos intermedios (generados, no versionados)
-│   └── processed/     # dataset limpio (generado, no versionado)
+│   └── processed/     # dataset limpio y base SQLite (generados, no versionados)
 ├── docs/
 │   └── decisiones.md  # bitácora de decisiones de limpieza y análisis
 ├── notebooks/         # 01 a 06, en orden de ejecución
-├── src/               # funciones reutilizables
+├── src/               # funciones reutilizables, creación de la base SQLite y consultas
 ├── sql/               # creación de tablas y consultas
 ├── dashboard/         # archivo de Power BI y capturas
 ├── reports/           # informe, resumen ejecutivo y presentación
@@ -116,6 +133,8 @@ Los CSV crudos ya están en `data/raw/`. Ejecuta los notebooks en este orden, **
 | 6 | `06_conclusiones.ipynb` | Conclusiones (solo texto) | — |
 
 El notebook 01 carga todo como texto y usa más de 1 GB de memoria; el 02 no lo necesita. El 04 tarda varios minutos. Los remuestreos usan semilla fija, así que los resultados se reproducen.
+
+**Opcional (SQL):** después del notebook 02, ejecuta `python src/crear_bd.py` y `python src/consultas.py` (ver la sección "Base de datos y consultas SQL").
 
 Para ejecutarlos sin abrir Jupyter:
 

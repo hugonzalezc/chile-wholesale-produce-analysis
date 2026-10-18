@@ -271,3 +271,10 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Decisión:** no evaluar una tendencia simple frente a la repetición del mismo mes del año anterior.
 - **Justificación:** pregunta opcional, de menor prioridad que cerrar el proyecto y el de optimización. Con la estacionalidad de P6 (26 de 44 productos con patrón estable), se espera que la línea base ingenua supere a una tendencia lineal sin componente estacional. Una comparación justa exigiría una tercera alternativa (tendencia más perfil estacional).
 - **Impacto:** el proyecto describe patrones y no hace predicciones. Queda como trabajo futuro.
+
+### D-35 · Base SQLite de una sola tabla
+- **Fecha:** 2026-10-18
+- **Decisión:** cargar el dataset limpio en una tabla única `precios` (21 columnas) de SQLite, con la clave de D-12 como índice único y otros índices (producto, mercado, año y mes, región) creados después de la carga.
+- **Justificación:** el análisis es sobre una sola entidad (filas de precios), y más tablas solo agregarían uniones. Crear los índices al final acelera la carga.
+- **Resultado:** el índice único se creó sin error (confirma en SQL que no hay duplicados) y las consultas Q1 a Q4 reproducen las cifras de los notebooks.
+- **Impacto:** la base, de varios cientos de MB, no se versiona; se regenera con `src/crear_bd.py`.
