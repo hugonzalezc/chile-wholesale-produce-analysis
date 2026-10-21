@@ -278,3 +278,11 @@ Nuevo método para P3: proporción de filas extranjeras por producto y año, con
 - **Justificación:** el análisis es sobre una sola entidad (filas de precios), y más tablas solo agregarían uniones. Crear los índices al final acelera la carga.
 - **Resultado:** el índice único se creó sin error (confirma en SQL que no hay duplicados) y las consultas Q1 a Q4 reproducen las cifras de los notebooks.
 - **Impacto:** la base, de varios cientos de MB, no se versiona; se regenera con `src/crear_bd.py`.
+
+### D-36 · Dashboard de Power BI de dos páginas
+- **Fecha:** 2026-10-21
+- **Decisión:** dashboard de dos páginas (panorama y precios) sobre el dataset limpio. Las medidas de precio devuelven valor solo si la selección de los segmentadores contiene exactamente un producto y una unidad; si no, quedan vacías y se muestra un aviso.
+- **Justificación:** el análisis mostró que comparar o promediar precios de unidades distintas es engañoso (D-17, D-27). La regla lo impide desde el dashboard, incluso si el usuario selecciona varios valores con Ctrl.
+- **Detalle técnico:** una primera versión de la medida contaba los productos visibles en cada punto del gráfico, y mostraba precios en puntos donde solo existía un producto. Se corrigió contando sobre la selección de los segmentadores (`ALLSELECTED`).
+- **Resultado:** las cifras coinciden con las consultas Q1 y Q5. Los gráficos de líneas usan interpolación lineal, sin suavizado, para no inventar valores entre meses.
+- **Limitaciones:** precios nominales; el `.pbix` guarda la ruta local del dataset.

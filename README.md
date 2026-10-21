@@ -12,7 +12,8 @@ Análisis exploratorio de los registros de comercialización de frutas y hortali
 - [x] Análisis de volúmenes, origen, precios, estacionalidad e inflación (P1 a P6)
 - [x] Conclusiones (notebook 06)
 - [x] Base de datos SQL
-- [ ] Dashboard e informe
+- [x] Dashboard
+- [ ] Informe
 
 ## Preguntas de investigación
 
@@ -66,7 +67,21 @@ Los resultados se refieren a los 12 mercados mayoristas que monitorea ODEPA y de
 
 ## Dashboard
 
-*(Capturas al terminar.)*
+Dashboard de Power BI de dos páginas sobre el dataset limpio (`dashboard/dashboard.pbix`).
+
+**Página 1 · Panorama.** Filas, productos, mercados y regiones; filas por año y por región; participación de la RM y del origen extranjero por año, con un filtro de mes (de 1 a 9 reproduce la comparación de enero a septiembre de los notebooks).
+
+![Página 1](dashboard/capturas/pagina1_panorama.png)
+
+**Página 2 · Precios.** Evolución mensual del precio ponderado por volumen de un producto en una unidad, con filtros de producto, unidad, mercado y año. Las medidas de precio solo devuelven valor cuando la selección tiene exactamente un producto y una unidad: así no se mezclan unidades de venta distintas (D-36). Si falta la selección, se muestra un aviso. Los precios son nominales.
+
+![Página 2](dashboard/capturas/pagina2_precios.png)
+
+**Validación.** Las cifras del dashboard coinciden con las consultas SQL: 1.297.334 filas, 82 productos, 12 mercados y 9 regiones (Q1), y tomate en bandeja de 18 kilos con un precio ponderado de 9.866 en 2020 y 13.181 en 2025 (Q5).
+
+**Nota.** El archivo `.pbix` guarda la ruta local del dataset limpio. Quien lo abra en otro computador ve los datos guardados, pero para actualizarlos tiene que cambiar esa ruta (Archivo → Opciones y configuración → Configuración del origen de datos).
+
+El archivo está en [dashboard/dashboard.pbix](dashboard/dashboard.pbix).
 
 ## Base de datos y consultas SQL
 
@@ -100,14 +115,14 @@ chile-wholesale-produce-analysis/
 ├── notebooks/         # 01 a 06, en orden de ejecución
 ├── src/               # funciones reutilizables, creación de la base SQLite y consultas
 ├── sql/               # creación de tablas y consultas
-├── dashboard/         # archivo de Power BI y capturas
-├── reports/           # informe, resumen ejecutivo y presentación
+├── dashboard/         # dashboard de Power BI y capturas
+├── reports/           # (vacío por ahora)
 └── images/            # gráficos usados en este README
 ```
 
 ## Herramientas
 
-Python, Pandas, Matplotlib, Seaborn, SQLite, Power BI, Jupyter, Git.
+Python, Pandas, Matplotlib, SQLite, Power BI, Jupyter, Git.
 
 ## Cómo reproducirlo
 
